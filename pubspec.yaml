@@ -1,0 +1,5 @@
+name: cp949
+version: 0.0.1
+description: cp949 to utf8 transformer
+environment:
+  sdk: ">=2.0.0 <3.0.0"

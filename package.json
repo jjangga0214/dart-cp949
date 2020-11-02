@@ -1,0 +1,29 @@
+{
+  "name": "dart-cp949",
+  "license": "MIT",
+  "scripts": {
+    "format:md": "markdownlint --fix",
+    "husky-skip": "cross-env HUSKY_SKIP_HOOKS=1",
+    "commit": "git cz"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.md": [
+      "yarn format:md"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "markdownlint-cli": "^0.24.0"
+  }
+}
