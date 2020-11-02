@@ -4,7 +4,9 @@
   "scripts": {
     "format:md": "markdownlint --fix",
     "husky-skip": "cross-env HUSKY_SKIP_HOOKS=1",
-    "commit": "git cz"
+    "commit": "git cz",
+    "format": "dartfmt --fix",
+    "test": "dart test"
   },
   "husky": {
     "hooks": {
@@ -13,6 +15,9 @@
     }
   },
   "lint-staged": {
+    "*.dart": [
+      "yarn format"
+    ],
     "*.md": [
       "yarn format:md"
     ]
