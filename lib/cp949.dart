@@ -1,16 +1,16 @@
 
 import 'dart:async' show Future;
-import 'dart:core' show Map, String;
+import 'dart:core' show Map, List, String, int;
 import 'dart:convert';
 import 'dart:io';
 
+import 'src/cp949-to-unicode.dart' show codeMap;
 
-Future<Map<String, String>> _loadCodeMap() async {
-    return json.decode(await (new File('lib/cp949-to-unicode.json')).readAsString()).cast<String, String>();
+
+List<int> toUtf8(List<int> codeUnits) {
+    return null;
 }
 
-var codeMap = _loadCodeMap();
-
-Future<String> toUtf8Code(String cp949Code) async {
-    return (await codeMap)[cp949Code];
+String toUtf8Code(String cp949Code) async { 
+    return CODE_MAP[cp949Code];
 }
