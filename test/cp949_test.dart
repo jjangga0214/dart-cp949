@@ -13,7 +13,7 @@ void main() {
         equals([0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee]));
   });
 
-  test('Verify cp949.encode() and cp949.decode() are inverse functions', () {
+  test('Verify cp949.encode() and cp949.decode() are inverse functions.', () {
     const content = "123 abc !.,/? 春夏秋冬 아름다운 한글..";
     final cp949CodeUnits = cp949.encode(content);
     final decodedContent = cp949.decode(cp949CodeUnits);
