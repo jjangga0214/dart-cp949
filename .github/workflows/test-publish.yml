@@ -43,8 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # TODO: update if dart 3 is released
-        container: ["google/dart:1.13", "google/dart:2.0", "google/dart:2", "google/dart:latest"]
+        # TODO: update if dart 3 is released.
+        container: ["google/dart:2.1.0", "google/dart:2", "google/dart:latest"]
     env:
       PUB_CACHE: ~/.pub-cache
     container:
