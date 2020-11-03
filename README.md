@@ -27,12 +27,28 @@ CP949 에 대해서는 글을 쓰는 시점으로 이 라이브러리가 유일�
 
 ## Usage
 
+### `decode()`
+
+CP949 (EUC-KR) byte 배열을 (`List<int>`) 받아 dart 의 native String 을 리턴합니다.
+
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
 
 const cp949CodeUnitBytes = [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee];
 print(cp949.decode(cp949CodeUnitBytes)); // "아름다운" 출력
 ```
+
+### `encode()`
+
+dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) 리턴합니다.
+
+```dart
+import 'package:cp949/cp949.dart' as cp949;
+
+print(cp949.encode("아름다운")); // "[0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee]" 출력
+```
+
+## Example
 
 ```dart
 import 'package:http/http.dart' as http;

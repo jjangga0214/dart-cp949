@@ -1,5 +1,5 @@
 name: cp949
-version: 0.0.1
+version: 0.1.0
 description: CP949 Encoder/Decoder
 environment:
   sdk: ">=2.0.0 <3.0.0"

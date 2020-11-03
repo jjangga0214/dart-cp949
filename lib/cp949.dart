@@ -1,5 +1,4 @@
-import 'dart:core' show FormatException, List, String, int;
-import 'src/code_map.dart' show cp949ToUnicodeCodeMap;
+import 'src/code_map.dart' show cp949ToUnicodeCodeMap, unicodeToCp949CodeMap;
 
 List<int> toUnicodes(final List<int> codeUnits) {
   final unicodes = List<int>(codeUnits.length);
@@ -28,4 +27,23 @@ List<int> toUnicodes(final List<int> codeUnits) {
 /// Thus, the argument has to be raw byte array of CP949.
 String decode(final List<int> codeUnits) {
   return String.fromCharCodes(toUnicodes(codeUnits));
+}
+
+/// Dart does not support non-unicode encoding.
+/// Thus, the return value has to be raw byte array of CP949.
+List<int> encode(final String str) {
+  final cp949codeUnits = List<int>(str.codeUnits.length * 2);
+  var i = 0;
+  for (final unicode in str.codeUnits) {
+    final cp949Code = unicodeToCp949CodeMap[unicode];
+    final firstByte = cp949Code >> 8;
+    final secondByte = cp949Code - (firstByte << 8);
+    if (firstByte != 0) {
+      cp949codeUnits[i] = firstByte;
+      i = i + 1;
+    }
+    cp949codeUnits[i] = secondByte;
+    i = i + 1;
+  }
+  return cp949codeUnits.sublist(0, i);
 }
