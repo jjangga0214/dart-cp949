@@ -1,6 +1,6 @@
 # dart-cp949
 
-CP949(EUC-KR 포함)을 UTF-8 으로 변환해주는 라이브러리입니다.
+CP949 (EUC-KR 포함)을 Encode, Decode 해 주는 라이브러리입니다.
 
 [![license](https://img.shields.io/badge/license-MIT-ff4081.svg?style=flat-square&labelColor=black)](./LICENSE)
 [![.nvmrc](https://img.shields.io/badge/.nvmrc-14-00e676.svg?style=flat-square&labelColor=black)](./.nvmrc)
@@ -9,10 +9,23 @@ CP949(EUC-KR 포함)을 UTF-8 으로 변환해주는 라이브러리입니다.
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
 ![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)
 
+## 🚧 In construction
+
+개발중입니다.
+
 ## Why?
 
 Dart 는 non-unicode 인코딩/디코딩을 native 하게 지원하지 않습니다.
 현재로서는 이 라이브러리가 유일합니다.
+
+## Usage
+
+```dart
+import 'package:cp949/cp949.dart' as cp949;
+
+const cp949CodeUnitBytes = [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee];
+print(cp949.decode(cp949CodeUnitBytes)); // "아름다운" 출력
+```
 
 ## Development(Contribution)
 
