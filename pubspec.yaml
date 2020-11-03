@@ -2,8 +2,8 @@ name: cp949
 version: 0.1.0
 description: CP949 Encoder/Decoder
 environment:
-  # TODO: sync CI config when sdk support range is changed.
-  sdk: ">=2.5.0 <3.0.0"
+  # SYNC: with CI config when sdk support range is changed.
+  sdk: ">=2.5.2 <3.0.0"
 homepage: https://github.com/jjangga0214/dart-cp949
 repository: https://github.com/jjangga0214/dart-cp949
 issue_tracker: https://github.com/jjangga0214/dart-cp949/issues

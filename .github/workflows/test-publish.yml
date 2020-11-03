@@ -43,9 +43,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # TODO: update when dart 3 is released.
-        # TODO: update when env.sdk support range is changed.
-        container: ["google/dart:2.5.0", "google/dart:2", "google/dart:latest"]
+        # FUTURE: update when dart 3 is released.
+        # SYNC: update when env.sdk support range is changed.
+        # TODO: test on multiple sdks.
+        # container: ["google/dart:2.5.2", "google/dart:2", "google/dart:latest"]
+        container: ["google/dart:2"]
     env:
       PUB_CACHE: ~/.pub-cache
     container:
@@ -67,14 +69,14 @@ jobs:
 
   publish:
     needs: test
-    # TODO: modify to 'refs/tags/v2.' when v2 is released.
+    # SYNC: modify to 'refs/tags/v2.' when v2 is released.
     if: startsWith(github.ref, 'refs/tags/v1.') && ( github.event.base_ref == 'refs/heads/master' )
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: ~/.pub-cache
 
     container:
-      # TODO: bump the version up if dart 3 is released
+      # FUTURE: bump the version up if dart 3 is released
       image: google/dart:2
 
     steps:
