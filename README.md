@@ -1,13 +1,11 @@
 # dart-cp949
 
-CP949 을 Encode, Decode 해 주는 라이브러리입니다.  
+CP949 을 Encode, Decode 해 주는 라이브러리입니다.
 (CP949 는 EUC-KR 의 상위집합이기 때문에, EUC-KR 도 다룰 수 있습니다.)
 
 [![Pub Version](https://img.shields.io/pub/v/cp949?color=blueviolet&style=flat-square&labelColor=black)](https://pub.dev/packages/cp949)
 
 [![license](https://img.shields.io/badge/license-MIT-ff4081.svg?style=flat-square&labelColor=black)](./LICENSE)
-[![.nvmrc](https://img.shields.io/badge/.nvmrc-14-00e676.svg?style=flat-square&labelColor=black)](./.nvmrc)
-[![yarn:devDependency](https://img.shields.io/badge/yarn-devDependency-aeea00.svg?style=flat-square&labelColor=black)](https://yarnpkg.com/en/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-ffab00.svg?style=flat-square&labelColor=black)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
 ![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)
