@@ -9,9 +9,16 @@ CP949 (EUC-KR 포함)을 Encode, Decode 해 주는 라이브러리입니다.
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
 ![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)
 
-## 🚧 In construction
+## 🚧 Under construction
 
 개발중입니다.
+
+## Installation
+
+```yaml
+dependencies:
+  cp949: ^0.0.1
+```
 
 ## Why?
 
@@ -25,6 +32,15 @@ import 'package:cp949/cp949.dart' as cp949;
 
 const cp949CodeUnitBytes = [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee];
 print(cp949.decode(cp949CodeUnitBytes)); // "아름다운" 출력
+```
+
+```dart
+import 'package:http/http.dart' as http;
+import 'package:cp949/cp949.dart' as cp949;
+
+const url = "https://euc-kr-encoded-website.co.kr";
+final response = await http.get(url);
+print(cp949.decode(response.bodyBytes));
 ```
 
 ## Development (Contribution)

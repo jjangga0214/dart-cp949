@@ -1,7 +1,11 @@
 name: cp949
 version: 0.0.1
-description: cp949 to utf8 transformer
+description: CP949 Encoder/Decoder
 environment:
   sdk: ">=2.0.0 <3.0.0"
+homepage: https://github.com/jjangga0214/dart-cp949
+repository: https://github.com/jjangga0214/dart-cp949
+issue_tracker: https://github.com/jjangga0214/dart-cp949/issues
+documentation: https://github.com/jjangga0214/dart-cp949
 dev_dependencies:
   test: ^1.15.4
