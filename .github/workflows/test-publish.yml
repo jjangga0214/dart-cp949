@@ -45,7 +45,7 @@ jobs:
       matrix:
         # TODO: update when dart 3 is released.
         # TODO: update when env.sdk support range is changed.
-        container: ["google/dart:2.2.0", "google/dart:2", "google/dart:latest"]
+        container: ["google/dart:2.5.0", "google/dart:2", "google/dart:latest"]
     env:
       PUB_CACHE: ~/.pub-cache
     container:
