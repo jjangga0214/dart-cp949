@@ -1,0 +1,99 @@
+name: Test
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.markdownlint.json'
+      - '.editorconfig'
+      - '.gitattributes'
+      - '.gitignore'
+      - 'commitlint.config.js'
+      - 'LICENSE'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.markdownlint.json'
+      - '.editorconfig'
+      - '.gitattributes'
+      - '.gitignore'
+      - 'commitlint.config.js'
+      - 'LICENSE'
+
+jobs:
+  # [original source of job "prepare"](https://github.com/srz-zumix/ci-skip/blob/master/.github/workflows/main.yml#L15)
+  prepare:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check [ci skip] or [skip ci]
+        # skip commits with [ci skip] or [skip ci], except on an action triggered by push of a version tag
+        if: "contains(github.event.head_commit.message, '[ci skip]') || contains(github.event.head_commit.message, '[skip ci]')"
+        run: |
+          # 78 is conventional "neutral exit code"
+          exit 78
+
+  test:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # TODO: update if dart 3 is released
+        container: ["google/dart:1.13", "google/dart:2.0", "google/dart:2", "google/dart:latest"]
+    env:
+      PUB_CACHE: ~/.pub-cache
+    container:
+      image: ${{ matrix.container }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          # Make it sure to sync with $PUB_CACHE above.
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+      - name: Install dependencies
+        run: pub get
+      - name: Run tests
+        run: pub run test
+
+  publish:
+    needs: test
+    # TODO: modify to 'refs/tags/v2.' when v2 is released.
+    if: startsWith(github.ref, 'refs/tags/v1.') && ( github.event.base_ref == 'refs/heads/master' )
+    runs-on: ubuntu-latest
+    env:
+      PUB_CACHE: ~/.pub-cache
+
+    container:
+      # TODO: bump the version up if dart 3 is released
+      image: google/dart:2
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup credentials
+        run: |
+          mkdir -p $PUB_CACHE
+          cat <<EOF > $PUB_CACHE/credentials.json
+          {
+          "accessToken":"${{ secrets.GOOGLE_OAUTH_ACCESS_TOKEN }}",
+          "refreshToken":"${{ secrets.GOOGLE_OAUTH_REFRESH_TOKEN }}",
+          "tokenEndpoint":"https://accounts.google.com/o/oauth2/token",
+          "scopes": [ "openid", "https://www.googleapis.com/auth/userinfo.email" ],
+          "expiration": 1604402549714
+          }
+          EOF
+
+      - name: Publish To Pub.dev
+        # only runs if name of git tag starts with 'v1.' and on branch master
+        # `--force` option: Publish without confirmation if there are no errors.
+        run: |
+          pub publish --force
