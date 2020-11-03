@@ -2,22 +2,20 @@
 
 CP949 (EUC-KR 포함)을 Encode, Decode 해 주는 라이브러리입니다.
 
+[![Pub Version](https://img.shields.io/pub/v/cp949?color=blueviolet&style=flat-square&labelColor=black)](https://pub.dev/packages/cp949)
+
 [![license](https://img.shields.io/badge/license-MIT-ff4081.svg?style=flat-square&labelColor=black)](./LICENSE)
 [![.nvmrc](https://img.shields.io/badge/.nvmrc-14-00e676.svg?style=flat-square&labelColor=black)](./.nvmrc)
-[![yarn:devDependency](https://img.shields.io/badge/yarn-required-aeea00.svg?style=flat-square&labelColor=black)](https://yarnpkg.com/en/)
+[![yarn:devDependency](https://img.shields.io/badge/yarn-devDependency-aeea00.svg?style=flat-square&labelColor=black)](https://yarnpkg.com/en/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-ffab00.svg?style=flat-square&labelColor=black)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
 ![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)
-
-## 🚧 Under construction
-
-개발중입니다.
 
 ## Installation
 
 ```yaml
 dependencies:
-  cp949: ^0.0.1
+  cp949: ^1.0.0
 ```
 
 ## Why?
@@ -49,6 +47,8 @@ print(cp949.encode("아름다운")); // "[0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0x
 ```
 
 ## Example
+
+EUC-KR 로 인코딩된 http 응답을 받아오는 예시를 들면 다음과 같습니다.
 
 ```dart
 import 'package:http/http.dart' as http;
