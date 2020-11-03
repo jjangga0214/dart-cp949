@@ -70,7 +70,7 @@ jobs:
   publish:
     needs: test
     # SYNC: modify to 'refs/tags/v2.' when v2 is released.
-    if: startsWith(github.ref, 'refs/tags/v1.') && ( github.event.base_ref == 'refs/heads/master' )
+    if: startsWith(github.ref, 'refs/tags/v1.') && ( github.event.base_ref == 'refs/heads/main' )
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: ~/.pub-cache
