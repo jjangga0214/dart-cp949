@@ -5,7 +5,7 @@
     "format:md": "markdownlint --fix",
     "husky-skip": "cross-env HUSKY_SKIP_HOOKS=1",
     "commit": "git cz",
-    "format": "dartfmt --fix",
+    "format": "dartfmt --overwrite --fix",
     "test": "dart test"
   },
   "husky": {

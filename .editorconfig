@@ -9,12 +9,7 @@ end_of_line = lf
 insert_final_newline = true
 charset = utf-8
 
-[*.{dart}]
-indent_style = space
-indent_size = 4
-trim_trailing_whitespace = true
-
-[*.{js,json,yml,yaml}]
+[*.{dart, js,json,yml,yaml}]
 indent_style = space
 indent_size = 2
 trim_trailing_whitespace = true
