@@ -42,7 +42,7 @@ print(cp949.decode(brokenString.codeUnits)); // "컨텐츠" 출력
 ### `decodeString()`
 
 CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을
-받아 변환해 제대로 리턴합니다.  
+받아 변환해 제대로 리턴합니다.
 (Dart 에서 깨져 보이는 것 뿐이지, 실 데이터 유실은 없습니다.)
 
 ```dart
@@ -67,7 +67,7 @@ print(String.fromCharCodes(cp949.encode("컨텐츠"))); // "ÄÁÅÙÃ÷" 출력
 
 ### `encodeToString()`
 
-CP949 (EUC-KR) byte 배열을 잘못 해석하여 깨져 보이는 String 을 리턴합니다.  
+CP949 (EUC-KR) byte 배열을 잘못 해석하여 깨져 보이는 String 을 리턴합니다.
 (Dart 에서만 깨져보이는 것이지, 제대로 인코딩 된 것이므로, CP949 (EUC-KR) 을 처
 리할 수 있는 다른 프로그램으로 보낼 시 (REST API 등) 호환됩니다.)
 
