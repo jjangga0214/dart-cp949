@@ -1,6 +1,7 @@
 {
   "name": "dart-cp949",
   "license": "MIT",
+  "private": "true",
   "scripts": {
     "format:md": "markdownlint --fix",
     "husky-skip": "cross-env HUSKY_SKIP_HOOKS=1",
