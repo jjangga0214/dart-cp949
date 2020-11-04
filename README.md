@@ -33,6 +33,9 @@ import 'package:cp949/cp949.dart' as cp949;
 
 const cp949CodeUnitBytes = [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee];
 print(cp949.decode(cp949CodeUnitBytes)); // "아름다운" 출력
+
+const brokenString = "ÄÁÅÙÃ÷";
+print(cp949.decode(brokenString.codeUnits)); // "컨텐츠" 출력
 ```
 
 ### `encode()`
@@ -43,6 +46,8 @@ dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) �
 import 'package:cp949/cp949.dart' as cp949;
 
 print(cp949.encode("아름다운")); // "[0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee]" 출력
+
+print(String.fromCharCodes(cp949.encode("컨텐츠"))); // "ÄÁÅÙÃ÷" 출력 (제대로 된 결과입니다!)
 ```
 
 ## Example
@@ -56,6 +61,18 @@ import 'package:cp949/cp949.dart' as cp949;
 const url = "https://euc-kr-encoded-website.co.kr";
 final response = await http.get(url);
 print(cp949.decode(response.bodyBytes));
+// 또는 print(cp949.decode(response.body.codeUnits));
+```
+
+EUC-KR 인코딩을 처리하는 API 를 사용하는 예시를 들면 다음과 같습니다.
+
+```dart
+import 'package:http/http.dart' as http;
+import 'package:cp949/cp949.dart' as cp949;
+
+const url = "https://euc-kr-accepting-api.co.kr";
+await http.post(url,
+      body: {'title': String.fromCharCodes(cp949.encode("컨텐츠")), 'foo': 'bar'});
 ```
 
 ## Development (Contribution)
