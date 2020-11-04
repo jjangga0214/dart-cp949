@@ -1,7 +1,7 @@
 # dart-cp949
 
-CP949 을 Encode, Decode 해 주는 라이브러리입니다.
-(CP949 는 EUC-KR 의 상위집합이기 때문에, EUC-KR 도 다룰 수 있습니다.)
+CP949 을 Encode, Decode 해 주는 라이브러리입니다. (CP949 는 EUC-KR 의 상위집합이
+기 때문에, EUC-KR 도 다룰 수 있습니다.)
 
 [![Pub Version](https://img.shields.io/pub/v/cp949?color=blueviolet&style=flat-square&labelColor=black)](https://pub.dev/packages/cp949)
 
@@ -19,14 +19,15 @@ dependencies:
 
 ## Why?
 
-Dart 는 non-unicode 인코딩/디코딩을 native 하게 지원하지 않습니다.
-글을 쓰는 시점으로 CP949 지원하는 라이브러리는 이 프로젝트가 유일해 보입니다.
+Dart 는 non-unicode 인코딩/디코딩을 native 하게 지원하지 않습니다. 글을 쓰는 시
+점으로 CP949 지원하는 라이브러리는 이 프로젝트가 유일해 보입니다.
 
 ## Usage
 
 ### `decode()`
 
-CP949 (EUC-KR) byte 배열을 (`List<int>`) 받아 dart 의 native String 을 리턴합니다.
+CP949 (EUC-KR) byte 배열을 (`List<int>`) 받아 dart 의 native String 을 리턴합니
+다.
 
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
@@ -40,7 +41,8 @@ print(cp949.decode(brokenString.codeUnits)); // "컨텐츠" 출력
 
 ### `decodeString()`
 
-CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을 받아 변환해 제대로 리턴합니다.  
+CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을
+받아 변환해 제대로 리턴합니다.  
 (Dart 에서 깨져 보이는 것 뿐이지, 실 데이터 유실은 없습니다.)
 
 ```dart
@@ -52,7 +54,8 @@ print(cp949.decodeString(brokenString)); // "컨텐츠" 출력
 
 ### `encode()`
 
-dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) 리턴합니다.
+dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) 리턴합니
+다.
 
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
@@ -65,7 +68,8 @@ print(String.fromCharCodes(cp949.encode("컨텐츠"))); // "ÄÁÅÙÃ÷" 출력
 ### `encodeToString()`
 
 CP949 (EUC-KR) byte 배열을 잘못 해석하여 깨져 보이는 String 을 리턴합니다.  
-(Dart 에서만 깨져보이는 것이지, 제대로 인코딩 된 것이므로, CP949 (EUC-KR) 을 처리할 수 있는 다른 프로그램으로 보낼 시 (REST API 등) 호환됩니다.)
+(Dart 에서만 깨져보이는 것이지, 제대로 인코딩 된 것이므로, CP949 (EUC-KR) 을 처
+리할 수 있는 다른 프로그램으로 보낼 시 (REST API 등) 호환됩니다.)
 
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
@@ -101,7 +105,8 @@ await http.post(url,
 
 ## Development (Contribution)
 
-이 project 는 마크다운 린트, 커밋 메세지 린트 등 개발환경 설정을 위해 yarn과 nodejs package 들을 사용합니다.
+이 project 는 마크다운 린트, 커밋 메세지 린트 등 개발환경 설정을 위해 yarn과
+nodejs package 들을 사용합니다.
 
 ```shell
 yarn install
@@ -112,4 +117,5 @@ yarn format .
 
 ## License
 
-[MIT License](LICENSE). Copyright &copy; 2020, GIL B. Chan <[bnbcmindnpass@gmail.com](mailto:bnbcmindnpass@gmail.com)>
+[MIT License](LICENSE). Copyright &copy; 2020, GIL B. Chan
+<[bnbcmindnpass@gmail.com](mailto:bnbcmindnpass@gmail.com)>
