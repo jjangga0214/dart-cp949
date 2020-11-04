@@ -14,7 +14,7 @@ CP949 을 Encode, Decode 해 주는 라이브러리입니다.
 
 ```yaml
 dependencies:
-  cp949: ^1.0.0
+  cp949: ^1.1.0
 ```
 
 ## Why?
@@ -38,6 +38,18 @@ const brokenString = "ÄÁÅÙÃ÷";
 print(cp949.decode(brokenString.codeUnits)); // "컨텐츠" 출력
 ```
 
+### `decodeString()`
+
+CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을 받아 변환해 제대로 리턴합니다.  
+(Dart 에서 깨져 보이는 것 뿐이지, 실 데이터 유실은 없습니다.)
+
+```dart
+import 'package:cp949/cp949.dart' as cp949;
+
+const brokenString = "ÄÁÅÙÃ÷";
+print(cp949.decodeString(brokenString)); // "컨텐츠" 출력
+```
+
 ### `encode()`
 
 dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) 리턴합니다.
@@ -50,7 +62,18 @@ print(cp949.encode("아름다운")); // "[0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0x
 print(String.fromCharCodes(cp949.encode("컨텐츠"))); // "ÄÁÅÙÃ÷" 출력 (제대로 된 결과입니다!)
 ```
 
-## Example
+### `encodeToString()`
+
+CP949 (EUC-KR) byte 배열을 잘못 해석하여 깨져 보이는 String 을 리턴합니다.  
+(Dart 에서만 깨져보이는 것이지, 제대로 인코딩 된 것이므로, CP949 (EUC-KR) 을 처리할 수 있는 다른 프로그램으로 보낼 시 (REST API 등) 호환됩니다.)
+
+```dart
+import 'package:cp949/cp949.dart' as cp949;
+
+print(cp949.encodeToString("컨텐츠")); // "ÄÁÅÙÃ÷" 출력 (제대로 된 결과입니다!)
+```
+
+## Examples
 
 EUC-KR 로 인코딩된 http 응답을 받아오는 예시를 들면 다음과 같습니다.
 
@@ -62,6 +85,7 @@ const url = "https://euc-kr-encoded-website.co.kr";
 final response = await http.get(url);
 print(cp949.decode(response.bodyBytes));
 // 또는 print(cp949.decode(response.body.codeUnits));
+// 또는 print(cp949.decodeString(response.body));
 ```
 
 EUC-KR 인코딩을 처리하는 API 를 사용하는 예시를 들면 다음과 같습니다.
@@ -72,7 +96,7 @@ import 'package:cp949/cp949.dart' as cp949;
 
 const url = "https://euc-kr-accepting-api.co.kr";
 await http.post(url,
-      body: {'title': String.fromCharCodes(cp949.encode("컨텐츠")), 'foo': 'bar'});
+  body: {'title': cp949.encodeToString("컨텐츠"), 'foo': 'bar'});
 ```
 
 ## Development (Contribution)
