@@ -88,7 +88,7 @@ print(cp949.decode(response.bodyBytes));
 // 또는 print(cp949.decodeString(response.body));
 ```
 
-EUC-KR 인코딩을 처리하는 API 를 사용하는 예시를 들면 다음과 같습니다.
+EUC-KR 인코딩을 사용하는 REST API 를 사용하는 예시를 들면 다음과 같습니다.
 
 ```dart
 import 'package:http/http.dart' as http;
