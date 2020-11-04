@@ -23,10 +23,12 @@ List<int> toUnicodes(final List<int> codeUnits) {
   return unicodes.sublist(0, j);
 }
 
-/// Dart does not support non-unicode encoding.
-/// Thus, the argument has to be raw byte array of CP949.
 String decode(final List<int> codeUnits) {
   return String.fromCharCodes(toUnicodes(codeUnits));
+}
+
+String decodeString(final String brokenString) {
+  return decode(brokenString.codeUnits);
 }
 
 /// Dart does not support non-unicode encoding.
@@ -46,4 +48,8 @@ List<int> encode(final String str) {
     i = i + 1;
   }
   return cp949codeUnits.sublist(0, i);
+}
+
+String encodeToString(final String str) {
+  return String.fromCharCodes(encode(str));
 }
