@@ -14,7 +14,7 @@ CP949 을 Encode, Decode 해 주는 라이브러리입니다.
 
 ```yaml
 dependencies:
-  cp949: ^1.1.0
+  cp949: ^1.2.1
 ```
 
 ## Why?

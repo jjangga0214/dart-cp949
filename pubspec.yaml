@@ -1,5 +1,6 @@
 name: cp949
-version: 1.2.0
+# SYNC: with README
+version: 1.2.1
 description: CP949 Encoder/Decoder
 environment:
   # SYNC: with CI config when sdk support range is changed.
