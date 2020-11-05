@@ -1,5 +1,6 @@
 name: cp949
-# SYNC: with README
+# SYNC: with README#Installation
+# SYNC: with CHANGELOG
 version: 1.2.1
 description: CP949 Encoder/Decoder
 environment:
