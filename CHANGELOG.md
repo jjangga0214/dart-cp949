@@ -1,5 +1,9 @@
 <!-- markdownlint-disable-file MD041 -->
 
+## 1.2.1
+
+- Fix docs.
+
 ## 1.2.0
 
 - Support wide range of sdk: `>=2.1.1 <3.0.0`.
