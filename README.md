@@ -24,7 +24,7 @@ Dart 는 non-unicode 인코딩/디코딩을 native 하게 지원하지 않습니
 
 ## Usage
 
-### `decode()`
+### `decode(List<int> codeUnits) -> String`
 
 CP949 (EUC-KR) byte 배열을 (`List<int>`) 받아 dart 의 native String 을 리턴합니다.
 
@@ -32,13 +32,13 @@ CP949 (EUC-KR) byte 배열을 (`List<int>`) 받아 dart 의 native String 을 �
 import 'package:cp949/cp949.dart' as cp949;
 
 const cp949CodeUnitBytes = [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xbf, 0xee];
-print(cp949.decode(cp949CodeUnitBytes)); // '아름다운' 출력
+final decoded = cp949.decode(cp949CodeUnitBytes)); // '아름다운'
 
 const brokenString = 'ÄÁÅÙÃ÷';
-print(cp949.decode(brokenString.codeUnits)); // '컨텐츠' 출력
+final decoded = cp949.decode(brokenString.codeUnits); // '컨텐츠'
 ```
 
-### `decodeString()`
+### `decodeString(String brokenString) -> String`
 
 CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을 받아 변환해 제대로 리턴합니다.  
 (dart 에서 깨져 보이는 것 뿐이지, 실 데이터 유실은 없습니다.)
@@ -47,22 +47,22 @@ CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨�
 import 'package:cp949/cp949.dart' as cp949;
 
 const brokenString = 'ÄÁÅÙÃ÷';
-print(cp949.decodeString(brokenString)); // '컨텐츠' 출력
+final decoded = cp949.decodeString(brokenString); // '컨텐츠'
 ```
 
-### `encode()`
+### `encode(String string) -> List<int>`
 
 dart 의 native String 을 받아 CP949 (EUC-KR) byte 배열로 (`List<int>`) 리턴합니다.
 
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
 
-print(cp949.encode('아름다운')); // '[0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xBF, 0xEE]' 출력
+final encoded = cp949.encode('아름다운'); // [0xBE, 0xC6, 0xB8, 0xA7, 0xB4, 0xD9, 0xBF, 0xEE]
 
-print(String.fromCharCodes(cp949.encode('컨텐츠'))); // 'ÄÁÅÙÃ÷' 출력 (제대로 된 결과입니다!)
+final encoded = String.fromCharCodes(cp949.encode('컨텐츠')); // 'ÄÁÅÙÃ÷' (제대로 된 결과입니다!)
 ```
 
-### `encodeToString()`
+### `encodeToString(String string) -> String`
 
 CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨져 보이는 String 을 리턴합니다.  
 (dart 에서만 깨져보이는 것이지, 제대로 인코딩 된 것이므로, CP949 (EUC-KR) 을 처리할 수 있는 다른 프로그램으로 보낼 시 (REST API 등) 호환됩니다.)
@@ -70,7 +70,7 @@ CP949 (EUC-KR) byte 배열을 유니코드 기반으로 잘못 해석하여 깨�
 ```dart
 import 'package:cp949/cp949.dart' as cp949;
 
-print(cp949.encodeToString('컨텐츠')); // 'ÄÁÅÙÃ÷' 출력 (제대로 된 결과입니다!)
+final encoded = cp949.encodeToString('컨텐츠'); // 'ÄÁÅÙÃ÷' (제대로 된 결과입니다!)
 ```
 
 ## Examples
