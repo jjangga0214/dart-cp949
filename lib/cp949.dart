@@ -1,4 +1,4 @@
-import 'dart_unicode_map.dart' show cp949ToUnicodeCodeMap, unicodeToCp949CodeMap;
+import 'src/code_map.dart' show cp949ToUnicodeCodeMap, unicodeToCp949CodeMap;
 
 List<int> toUnicodes(final List<int> codeUnits) {
   final List<int> unicodes = new List<int>.filled(codeUnits.length, 0);
